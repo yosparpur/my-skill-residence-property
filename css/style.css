@@ -330,6 +330,71 @@ body {
 .detail_tipe_rumah{
   padding-left: 0 !important;
 }
+ /* Blog Filter*/
+ #filter-container {
+  display: flex; /* Menggunakan Flexbox */
+  justify-content: center; /* Memusatkan horizontal */
+  align-items: center; /* Memusatkan vertikal jika diperlukan */
+  gap: 1rem; /* Memberikan jarak antar elemen */
+  margin: 20px 0; /* Opsional: Memberikan margin vertikal */
+}
+
+#filter-container label, 
+#filter-container input, 
+#filter-container button {
+  font-size: 1rem; /* Menyesuaikan ukuran font */
+  padding: 5px 10px; /* Memberikan ruang dalam */
+}
+
+
+#filter-container label {
+  font-size: 16px;
+  color: var(--primary-color); /* Sesuaikan dengan warna utama di variabel CSS */
+  font-weight: 500;
+}
+
+#filter-container input[type="date"] {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  color: var(--text-content);
+  width: 180px; /* Panjang input tanggal */
+}
+
+#filter-container input[type="date"]:focus {
+  outline: none;
+  border-color: var(--primary-color); /* Warna saat fokus */
+  box-shadow: 0 0 5px rgba(81, 84, 107, 0.5);
+}
+
+#filter-container button {
+  background-color: var(--primary-color);
+  color: var(--c-white);
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#filter-container button:hover {
+  background-color: var(--btn-hover-color); /* Warna hover dari variabel CSS */
+  transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+  #filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #filter-container input[type="date"], 
+  #filter-container button {
+    width: 100%;
+  }
+}
 
 
 /*Media Query */

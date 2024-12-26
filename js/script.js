@@ -335,6 +335,34 @@ if (tipeRumahValue != null && tipeRumahValue != ""){
     }
 }
 
+
+// Filter berdasarkan rentang tanggal
+document.getElementById("filter-btn").addEventListener("click", function () {
+    // Ambil nilai tanggal dari input
+    const startDate = new Date(document.getElementById("start-date").value);
+    const endDate = new Date(document.getElementById("end-date").value);
+    
+    // Pilih semua elemen blog berdasarkan class yang ada
+    const blogItems = document.querySelectorAll(".blog-item");
+  
+    // Iterasi elemen blog dan filter berdasarkan tanggal
+    blogItems.forEach((item) => {
+      const blogDate = new Date(item.getAttribute("data-date"));
+      
+      // Logika filter: sembunyikan jika tidak sesuai tanggal
+      if (
+        (!isNaN(startDate) && blogDate < startDate) || 
+        (!isNaN(endDate) && blogDate > endDate)
+      ) {
+        item.style.display = "none";
+      } else {
+        item.style.display = "block";
+      }
+    });
+});
+
+  
+
 // FOR BLOG LOAD DATA --------------------------------
 
 const blogData = [
@@ -356,9 +384,9 @@ const blogData = [
     },
 ]
 
-function generateBlogHTML(blogPost){
+function generateBlogHTML(blogPost) {
     return `
-        <div class="card mb-4">
+        <div class="card mb-4 blog-item" data-date="${new Date(blogPost.date).toISOString()}">
             <div class="row">
                 <div class="col-md-4">
                     <img src="${blogPost.image_blog}" width="100%" height="100%" />
@@ -374,13 +402,14 @@ function generateBlogHTML(blogPost){
                         <a href="./detail_blog.html?id=${blogPost.id}" class="btn btn-sm btn-primary btn-readmore">
                            <i class="fa fa-book me-1"></i>
                            read more
-                        </a
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     `;
 }
+
 
 function generateLatestBlogHTML(blogPost) {
     return `
